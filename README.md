@@ -1,36 +1,36 @@
- # Smart Lift Management System
+# Smart Anti-Theft Delivery Box
 
-An IoT-driven elevator automation and scheduling solution designed to optimize lift dispatching, minimize passenger wait times, and enable secure, real-time telemetry monitoring.
+An automated, tamper-resistant parcel containment solution designed to secure doorstep deliveries through real-time weight verification and IoT-enabled status monitoring.
 
 ## Overview
 
-Conventional elevator dispatching systems often result in long waiting times, redundant trips, and uneven passenger distribution. This project implements a microcontroller-based smart elevator management system that dynamically monitors passenger demand, controls floor access through RFID authentication, and transmits system status data to the cloud for real-time monitoring and simulation.
+Unattended doorstep parcel deliveries are vulnerable to theft and false delivery claims. This project proposes a secure physical enclosure integrated with weight-sensing instrumentation and microcontroller-based automation. The system detects package placement, secures the enclosure after delivery, and identifies potential tampering or unauthorized parcel removal.
 
 ## Key Features
 
-- **Dynamic Proximity & Presence Sensing:** Uses HC-SR04 ultrasonic sensors to detect passenger presence and monitor lift position.
-- **Secure Access Control:** Integrates RFID authentication to enable restricted or prioritized floor access.
-- **Cloud Telemetry & Logging:** Synchronizes lift status, current floor, and passenger traffic data with Firebase Realtime Database.
-- **Real-Time Passenger Feedback:** Displays system status, direction of travel, and arrival notifications using an I2C LCD.
-- **Simulation Validation:** Tests firmware logic through simulated elevator load and passenger traffic scenarios.
+- **Precision Weight Verification:** Uses a strain-gauge load cell and HX711 24-bit ADC to detect package placement and measure parcel weight.
+- **Automated Enclosure Locking:** Controls an electronic locking mechanism to secure the enclosure after a parcel is detected.
+- **Tamper & Theft Detection:** Monitors weight readings and identifies sudden weight changes that may indicate unauthorized parcel removal.
+- **Physical Prototype Design:** Focuses on enclosure stability, sensor protection, load cell mounting, and accurate weight measurement.
+- **Embedded Control Architecture:** Implements state-machine logic for delivery detection, secure storage, and parcel collection.
 
 ## Tech Stack & Hardware Components
 
 - **Microcontroller:** ESP32 (Dual-Core Wi-Fi Microcontroller)
 - **Firmware Development:** Embedded C/C++ (Arduino Framework)
-- **Sensors & Actuators:** HC-SR04 Ultrasonic Sensor, RC522 RFID Module, 16x2 I2C LCD Display
-- **Cloud & Networking:** Firebase Realtime Database, Wi-Fi (HTTP/REST)
-- **Simulation Tools:** Wokwi / Tinkercad / Proteus
+- **Sensors & Instrumentation:** Strain-Gauge Bar Load Cell, HX711 24-bit ADC Amplifier
+- **Actuation & Access:** 12V Solenoid Lock / Relay Module
+- **Mechanical Design:** Enclosure Assembly, Load Cell Mounting Plates, and Weighing Platform
 
 ## Circuit & Pin Configuration
 
-| Component | ESP32 Pin | Interface |
-|-----------|-----------|-----------|
-| HC-SR04 (Trig/Echo) | GPIO 5 / GPIO 18 | Digital GPIO |
-| RC522 RFID Module | GPIO 21 (SDA), GPIO 19 (SCK), GPIO 23 (MOSI), GPIO 18 (MISO) | SPI |
-| LCD Display (16x2) | GPIO 22 (SCL), GPIO 21 (SDA) | I2C |
-| Status LED / Buzzer | GPIO 2 / GPIO 4 | Digital Output |
+| Hardware Unit | ESP32 Pin | Interface / Role |
+|---------------|-----------|------------------|
+| HX711 DT (Data) | GPIO 21 | Digital Serial Data |
+| HX711 SCK (Clock) | GPIO 22 | Digital Serial Clock |
+| Relay Module (Lock Actuator) | GPIO 26 | Digital Output (Active High) |
+| Power Supply | 12V DC Adapter (Step-down to 5V/3.3V) | System Power |
 
 ## Documentation Status
 
-Physical prototype schematics, simulation models, and firmware source files will be uploaded upon completion of the final documentation.
+CAD assembly files, calibration routines, circuit diagrams, and firmware source files will be uploaded upon completion of the final documentation.
